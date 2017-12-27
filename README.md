@@ -5,7 +5,7 @@ Simple json web token implementation for spring boot using jjwt library.
 ## Configuration
 
 | Property                   | Default           | Required | Description |
-| -------------------------- |:-----------------:| --------:| ----------: |
+| -------------------------- | ----------------- | -------- | ----------- |
 | app.nonce.strict           | false             | false    | If set to true a nonce can only be used once until it is removed from cache. |
 | app.jwt.key                |                   | *true*   | Private key that is used to sign all JSON web tokens with. Also used to verify signatures. |
 | app.jwt.access.validity    | 600               | false    | Number of seconds an access token is valid. |
@@ -44,7 +44,7 @@ reached you have to do a new login with header values.
 You don't need to do a special request for login. If no access token is available you can include the following headers in a normal request.
 
 | Login Header         | Description |
-| -------------------- | ----------: |
+| -------------------- | ----------- |
 | X-Auth-Nonce         | Randomly generated string between 32 and 128 characters. |
 | X-Auth-Username      | Username. |
 | X-Auth-Timestamp     | Actual timestamp in format java.time.format.DateTimeFormatter.ISO_OFFSET_DATE_TIME. |
@@ -53,7 +53,7 @@ You don't need to do a special request for login. If no access token is availabl
 If the login is valid the following headers are returned.
 
 | Response Header           | Description |
-| ------------------------: | ----------: |
+| ------------------------- | ----------- |
 | X-Auth-Token-Type         | If this library results in any header response this header should be JWT. Otherwise don't rely on the values. They could come from another library. |
 | X-Auth-Access-Token       | The access token that can be used for further requests. |
 | X-Auth-Access-Expires-At  | The timestamp until the access token is valid. |
@@ -65,9 +65,9 @@ If the login is valid the following headers are returned.
 
 The X-Auth-Access-Token token from the login response can be used in requests within the Authorization header.
 
-| Header          | Value |
-| ----- --------: | ----------: |
-| Authorization   | Bearer <value from X-Auth-Access-Token (or X-Auth-Refresh-Token)> |
+| Header         | Value |
+| -------------- | ----- |
+| Authorization  | Bearer <value from X-Auth-Access-Token (or X-Auth-Refresh-Token)> |
 
 Make sure to prepend "Bearer " to the token. If you use the refresh token instead of the access token you will get a new
 access token with the next response.
@@ -78,7 +78,7 @@ Make sure to use the refresh token as usual as possible and keep it safe.
 
 Default schema used in the library:
 
-´´´sql
+```mysql
 CREATE TABLE users (
   id            IDENTITY      NOT NULL,
   username      VARCHAR(64)   NOT NULL,
@@ -107,4 +107,4 @@ CREATE TABLE users_roles (
   CONSTRAINT pk_users_roles__id PRIMARY KEY (id),
   CONSTRAINT uc_users_roles__user_id_role_id UNIQUE (user_id, role_id)
 );
-´´´
+```
