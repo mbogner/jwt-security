@@ -1,0 +1,29 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: jwt-secured-api
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: validate
+  h2:
+    console:
+      enabled: false
+  datasource:
+    url: jdbc:h2:mem:jwt-secured-api;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+logging:
+  pattern:
+    console: '%d{HH:mm:ss.SSS} %clr(${LOG_LEVEL_PATTERN:%5p}) %magenta(${PID:- }) [%t] %cyan(\(%F:%L\)) - %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}}'
+  level:
+    root: info
+    pm.mbo: debug
+
+app:
+  jwt:
+    key: +RNUrFzDN2dl7J55uKaGcY/Dr7lNWPrAJd8QNCEPTIEfz4npOGfOBmrQGETHaa8bWEfy9WdLkBe53kdH11obWw==
